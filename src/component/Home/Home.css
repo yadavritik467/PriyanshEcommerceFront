@@ -1,0 +1,132 @@
+.home-image{
+    width: 100%;
+    padding: 10px 20px;
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    text-align: center;  
+}
+
+.home-image > p {
+    width: 40rem;
+    height: fit-content;
+    
+}
+
+.home-image_1{
+    overflow: hidden;
+    width: 100%;
+    padding: 10px 0;
+    height: fit-content;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-evenly;
+    align-items: center;
+    text-align: center;  
+}
+.home-image_1 > p {
+    width: 40rem;
+    height: fit-content;
+    
+}
+
+.shoeImg{
+    height: 400px;
+    width: fit-content;
+    outline: none;
+    background: none;
+    color: black;
+}
+
+
+
+.home-image > a{
+    text-decoration: none;
+    border: 2px solid white;
+    font-size: 1.8rem;
+    background-color: rgb(28, 25, 25);
+    width: 150px;
+    text-align: center;
+    color: rgb(215, 206, 206);
+    padding: 0 5px;
+    border-radius: 5px;
+}
+
+
+.carousel{
+    /* width: 100%; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: fit-content;
+    margin: 20px;
+    border: 1px solid black;
+}
+
+.caro_img{
+  width: 100%;
+  /* height: 600px; */
+}
+.productListIcon{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+.productListIcon > a {
+    font-size: 3rem;
+    transition: all 0.3s;
+}
+.productListIcon > a:hover {
+    transform: rotate(-45deg);
+}
+.productListIcon > a:active {
+    transform: rotate(-45deg);
+}
+.productListIcon > a >img {
+    width: 50px;
+    height: 50px;
+}
+
+@media screen and (max-width: 600px) {
+    .home-image{
+        padding: 0;
+        flex-direction: column;
+    }
+    .home-image > p {
+        padding: 10px;
+        width: 100%;
+        height: fit-content;
+        
+    }
+    .home-image_1{
+        padding: 0;
+        flex-direction: column;
+    }
+    .home-image_1 > p {
+        padding: 10px;
+        width: 100%;
+        height: fit-content;
+        
+    }
+
+    .shoeImg{
+        height: fit-content;
+        width: 100%;
+        outline: none;
+        background: none;
+        color: black;
+    }
+    .carousel{
+        margin: 10px;
+    }
+    .productListIcon > a {
+        font-size: 2rem;
+        
+    }
+}
+
+
+

@@ -1,0 +1,140 @@
+.cartItem {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.cartItem {
+    height: calc(100vh - 100px);
+    overflow-y: auto;
+
+}
+
+
+.cartItem::-webkit-scrollbar {
+    width: 5px;
+
+}
+
+/* Track */
+.cartItem::-webkit-scrollbar-track {
+    background: white;
+    display: none;
+}
+
+/* Handle */
+.cartItem::-webkit-scrollbar-thumb {
+    background: white;
+    border-radius: 5px;
+    display: none;
+}
+
+/* Handle on hover */
+.cartItem::-webkit-scrollbar-thumb:hover {
+    background: #555;
+    display: none;
+}
+
+.cartItem-container {
+    /* width: 100%; */
+    /* height: fit-content; */
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.cartItem-container>a>img {
+    width: 250px;
+    height: 250px;
+    border: 1px solid grey;
+    border-radius: 5px;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+.cartItem-container>img:hover {
+    transform: translateY(-10px);
+    box-shadow: 10px 15px 5px rgba(0, 0, 0, 0.1);
+}
+
+.qtyContainer {
+    display: flex;
+    /* border: 1px solid black; */
+    width: 120px;
+    justify-content: space-between;
+}
+
+.qtyContainer>button {
+    border: 1px solid grey;
+    width: 50px;
+    margin: 0 3px;
+    background-color: rgba(214, 150, 32, 0.664);
+}
+
+.cartCalculator {
+    display: flex;
+    /* width: 100%; */
+    padding: 0 20px;
+    border-top: 1px solid grey;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cartCalculator>button {
+    border: 1px solid grey;
+    height: 30px;
+    width: 100px;
+    border-radius: 5px;
+    margin: 0 3px;
+    background-color: rgba(214, 150, 32, 0.664);
+    transition: all 0.3s;
+}
+
+.cartCalculator>button:hover {
+    transform: translateX(-10px);
+    box-shadow: 10px 15px 5px rgba(0, 0, 0, 0.1);
+}
+
+.cartCalculator>button:active {
+    transform: translateX(-10px);
+    box-shadow: 10px 15px 5px rgba(0, 0, 0, 0.1);
+}
+
+@media screen and (max-width: 600px) {
+    .cartCalculator {
+        display: flex;
+        padding: 0 5px;
+        border-top: 1px solid grey;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .cartItem-container {
+        flex-direction: column; 
+        margin: 20px 0;
+    }
+    .cartItem-container>a>img {
+        width: 200px;
+        height: 200px;
+        border: 1px solid grey;
+        border-radius: 5px;
+        transition: all 0.3s;
+        cursor: pointer;
+    }
+
+    .qtyContainer {
+        display: flex;
+        width: 180px;
+        justify-content: space-between;
+    }
+    
+    .qtyContainer>button {
+        border: 1px solid grey;
+        width: 40px;
+        margin: 0 5px;
+        background-color: rgba(214, 150, 32, 0.664);
+    }
+}

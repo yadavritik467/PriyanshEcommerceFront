@@ -1,0 +1,137 @@
+
+
+
+.allProductsParent{
+    display: flex;
+   flex-wrap: wrap;
+   justify-content: center;
+   width: 100%;
+  
+   height: fit-content;
+   padding: 50px 20px ;
+   color: black;
+
+
+}
+
+.allProducts{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: fit-content;
+    width: 300px;
+    padding: 10px 0;
+    margin:10px;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid grey;
+    border-radius: 10px;
+    transition: all 0.3s;
+    cursor: pointer;
+    color: black;
+}
+.allProducts:hover{
+   transform: translateY(-10px);
+  box-shadow: 10px 15px 5px rgba(0,0,0,0.1);
+}
+.allProducts:active{
+   transform: translateY(-10px);
+  box-shadow: 10px 15px 5px rgba(0,0,0,0.1);
+}
+.allProducts>a {
+    height: 250px;
+    width: 250px;
+    /* border: 1px solid black; */
+}
+.allProducts>a > img{
+    height: 250px;
+    width: 250px;
+}
+.allProducts > button{
+    outline: none;
+    border: 1px solid grey;
+    border-radius: 10px;
+    width: 150px;
+    background-color: rgb(244, 176, 51);
+
+}
+.singleProducts{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 10px;
+    height: 80vh;
+    width: 100%;
+    border-radius: 10px;
+    transition: all 0.3s;
+    cursor: pointer;
+    color: black;
+}
+
+.singleProducts>a {
+    height: 450px;
+    width: 450px;
+  
+}
+.singleProducts>a > img{
+    height: 450px;
+    width: 450px;
+    border: 1px solid grey;
+    border-radius: 10px ;
+}
+.singleProducts > div{
+    height: 500px;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.singleProducts >div > button{
+    outline: none;
+    border: 1px solid grey;
+    border-radius: 10px;
+    width: 350px;
+    background-color: rgb(244, 176, 51);
+
+}
+
+
+@media screen and (max-width: 600px) {
+    .singleProducts{
+        display: flex;
+        flex-direction: column;
+        gap: 0px;
+        height: 80vh;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+    }
+    .singleProducts>a {
+        margin-top:20px ;
+        height: 200px;
+        width: 200px;
+      
+    }
+    .singleProducts>a > img{
+        height: 200px;
+        width: 200px;
+        border: 1px solid grey;
+        border-radius: 10px ;
+    }
+
+    .singleProducts > div{
+        height: 500px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 0 20px;
+    }
+    .singleProducts >div > button{
+       
+        width: 250px;
+       
+    
+    }
+}

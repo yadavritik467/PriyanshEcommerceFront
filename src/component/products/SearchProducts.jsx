@@ -1,0 +1,99 @@
+import "./Products.css";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { CartState } from "../../context/contex";
+import { RiDeleteBin5Line } from "react-icons/ri";
+import { BsFillCartCheckFill } from "react-icons/bs";
+import { FadeIn } from "react-slide-fade-in";
+
+const SearchProducts = () => {
+  const {
+    state: { Cart, Product },
+    dispatch,
+  } = CartState();
+
+  // ssearch products
+
+  const data = Product;
+  const [searchQuery, setSearchQuery] = useState("");
+  const filteredData = data.filter((item) =>
+    item.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  // console.log(filteredData);
+
+  return (
+    <FadeIn
+    from=""
+    positionOffset={0}
+    triggerOffset={0}
+    delayInMilliseconds={10}
+  >
+      {" "}
+      <br />
+      <Link
+        to={"/searchProducts"}
+        style={{ position: "fixed", top: "100px", padding: "" }}
+      >
+        <input
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          style={{ width: "320px", margin: " 0 20px", textAlign: "center" }}
+          type="text"
+          placeholder="Search Your Products here .."
+        />
+      </Link>
+      <div className="allProductsParent">
+        { filteredData.length !==0 ? filteredData.map((pro) => (
+          <div key={pro._id} className="allProducts">
+            <Link to={`/product?id=${pro._id}`}>
+              <img src={pro.image.url} alt={pro.name} />
+            </Link>
+            <p>
+              <b>Name </b>: {pro.name}
+            </p>
+            <p>
+              <b>Price</b> : ₹{pro.price}/-
+            </p>
+            {/* <button onClick={()=> deleteHandler(pro._id)}>delete item</button> */}
+            {Cart.some((c) => c._id === pro._id) ? (
+              <button
+                onClick={() => {
+                  dispatch({
+                    type: "REMOVE_CART",
+                    payload: {
+                      _id: pro._id,
+                    },
+                  });
+                }}
+              >
+                {" "}
+                Remove Item <RiDeleteBin5Line />{" "}
+              </button>
+            ) : (
+              <button
+                onClick={() => {
+                  dispatch({
+                    type: "ADD_CART",
+                    payload: {
+                      _id: pro._id,
+                      name: pro.name,
+                      image: pro.image,
+                      price: pro.price,
+                      qty: 1,
+                    },
+                  });
+                }}
+              >
+                Add to Cart <BsFillCartCheckFill />
+              </button>
+            )}
+          </div>
+        )) : <p style={{fontSize:"20px",color:"grey"}}> No products found. . </p>
+        }
+      </div>
+    </FadeIn>
+  );
+};
+
+export default SearchProducts;
