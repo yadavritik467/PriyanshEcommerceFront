@@ -14,7 +14,18 @@ const SingleProduct = () => {
   let quryString = window.location.href;
   const [searchParams, setSearchParams] = useSearchParams(quryString);
   let product_id = searchParams.get("id");
-
+   
+  const shareHandler = () =>{
+    if(navigator.share){
+     navigator.share({
+       url:window.location.href,
+     })
+     .then(()=>console.log("share success"))
+     .catch((error)=>console.log("share error",error))
+    }else{
+     console.log("not supported on this device")
+    }
+   }
  
 
 //   console.log(product_id, quryString);
@@ -82,7 +93,8 @@ const SingleProduct = () => {
                 >
                   Add to Cart <BsFillCartCheckFill />
                 </button>
-              )}
+              )} <br />
+               <button onClick={shareHandler}> Share Product </button>
               </div>
             </div>
           );
