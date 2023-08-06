@@ -16,24 +16,22 @@ const SearchProducts = () => {
 
   const data = Product;
   const [searchQuery, setSearchQuery] = useState("");
+ 
   const filteredData = data.filter((item) =>
     item.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
-
+ 
+  
   // console.log(filteredData);
 
   return (
-    <FadeIn
-    from=""
-    positionOffset={0}
-    triggerOffset={0}
-    delayInMilliseconds={10}
+    <div
   >
       {" "}
       <br />
       <Link
         to={"/searchProducts"}
-        style={{ position: "fixed", top: "100px", padding: "" }}
+        className="searchButton"
       >
         <input
           value={searchQuery}
@@ -42,6 +40,7 @@ const SearchProducts = () => {
           type="text"
           placeholder="Search Your Products here .."
         />
+        
       </Link>
       <div className="allProductsParent">
         { filteredData.length !==0 ? filteredData.map((pro) => (
@@ -80,6 +79,7 @@ const SearchProducts = () => {
                       name: pro.name,
                       image: pro.image,
                       price: pro.price,
+                      category:pro.category,
                       qty: 1,
                     },
                   });
@@ -92,7 +92,7 @@ const SearchProducts = () => {
         )) : <p style={{fontSize:"20px",color:"grey"}}> No products found. . </p>
         }
       </div>
-    </FadeIn>
+    </div>
   );
 };
 

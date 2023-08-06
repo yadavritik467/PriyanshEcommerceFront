@@ -60,7 +60,7 @@ const SignUp = () => {
         <input required type="text" value={password} onChange={(e)=>setPassword(e.target.value)} placeholder="Enter your password" />
         <input required type="text" value={cpassword} onChange={(e)=>setCpassword(e.target.value)} placeholder="Confirm password" />
         <input required type="text"value={address} onChange={(e)=>setAddress(e.target.value)} placeholder="Enter your address" />
-        <button type="submit">{ load ? <Loader/> : "Sign Up"} </button>
+        <button type="submit">{ load ? "Loading" : "Sign Up"} </button>
         
         <p>
           {" "}

@@ -24,6 +24,15 @@ import Dashboard from './component/admin/dashboard/Dashboard';
 import AdminUsers from './component/admin/users/AdminUsers';
 import AdminProducts from './component/admin/products/AdminProducts';
 import AdminFront from './component/admin/front/AdminFront';
+import MyProfile from './component/myProfile/MyProfile';
+import ForgotPassword from './component/forgotPassword/ForgotPassword';
+import ResetPassword from './component/forgotPassword/ResetPassword';
+import MyOrder from './component/MyOrder/MyOrder';
+import AllOrder from './component/admin/orders/AllOrders';
+import OnlineOrder from './component/admin/orders/OnlineOrder';
+import CODOrder from './component/admin/orders/CODOrder';
+import DeliveredOrder from './component/admin/orders/DeliveredOrders';
+import CancleOrder from './component/admin/orders/CancleOrder';
 
 function App() {
   const [auth] = useAuth()
@@ -37,12 +46,21 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path='/signUp' element={<SignUp />} />
           <Route path='/login' element={<Login />} />
+          <Route path='/myProfile' element={ auth.user !== null ? <MyProfile /> : <Login />  } />
           <Route path='/cart' element={<Cart />} />
+          <Route path='/myOrder' element={<MyOrder />} />
+          <Route path='/forgotPassword' element={<ForgotPassword />} />
+          <Route path='/password/reset/:token' element={<ResetPassword />} />
 
           {auth.user !== null && auth.user.role === "admin" ?
           
           (<>
             <Route path='/admin/dashboard' element={<Dashboard/>} />
+            <Route path='/admin/totalOrders' element={<AllOrder/>} />
+            <Route path='/admin/onlineOrders' element={<OnlineOrder/>} />
+            <Route path='/admin/CODOrders' element={<CODOrder/>} />
+            <Route path='/admin/deliveredOrders' element={<DeliveredOrder/>} />
+            <Route path='/admin/cancleOrders' element={<CancleOrder/>} />
             <Route path='/admin/users' element={<AdminUsers/>} />
             <Route path='/admin/products' element={<AdminProducts/>} />
             <Route path='/admin/front' element={<AdminFront/>} />

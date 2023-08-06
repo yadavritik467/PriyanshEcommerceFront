@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { BsFillCartCheckFill } from "react-icons/bs";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import "./Products.css";
@@ -15,6 +15,8 @@ const Products = ({pro}) => {
     dispatch
   } = CartState();
   console.log(Cart)
+
+  const[size,setSize]=useState("size")
 
   const deleteHandler = async(_id) =>{
      try {
@@ -60,6 +62,9 @@ const Products = ({pro}) => {
             name:pro.name,
             image:pro.image,
             price:pro.price,
+            category:pro.category,
+            size:size,
+            setSize:setSize,
             qty:1
           }
         })

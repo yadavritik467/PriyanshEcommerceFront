@@ -62,14 +62,21 @@
 
 .qtyContainer {
     display: flex;
-    /* border: 1px solid black; */
-    width: 120px;
+    width: 250px;
+    height: 30px;
     justify-content: space-between;
+}
+.qtyContainer > p{
+    display: flex;
+    gap: 15px;
+}
+.qtyContainer > p>select{
+    height: 30px;
 }
 
 .qtyContainer>button {
     border: 1px solid grey;
-    width: 50px;
+    width: 30px;
     margin: 0 3px;
     background-color: rgba(214, 150, 32, 0.664);
 }
@@ -101,6 +108,55 @@
 .cartCalculator>button:active {
     transform: translateX(-10px);
     box-shadow: 10px 15px 5px rgba(0, 0, 0, 0.1);
+}
+
+.orderModal{
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.603);
+   left: 0;
+    top: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s;
+}
+
+.orderPayment{
+    /* position: fixed; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    
+    /* gap: 30px; */
+    padding: 0 5px;
+  border: 1px solid black;
+  background-color: rgb(210, 194, 194);
+    align-items: center;
+    width: 320px;
+    height: 400px;
+
+}
+
+.orderPayment > small {
+    color: rgb(27, 21, 21);
+}
+.orderPayment > img {
+   border: 1px solid black;
+   width: 200px;
+   height: 200px;
+}
+.orderPayment > button {
+    background-color: brown;
+    color: white;
+    outline: none;
+    border: 1px solid black;
+}
+.orderPayment > button:active {
+    
+    opacity: 0.7;
 }
 
 @media screen and (max-width: 600px) {

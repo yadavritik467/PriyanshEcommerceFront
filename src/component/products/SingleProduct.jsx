@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Products.css";
 import { Link, useSearchParams } from "react-router-dom";
 import { CartState } from "../../context/contex";
@@ -14,6 +14,9 @@ const SingleProduct = () => {
   let quryString = window.location.href;
   const [searchParams, setSearchParams] = useSearchParams(quryString);
   let product_id = searchParams.get("id");
+
+ 
+
 //   console.log(product_id, quryString);
   return (
     <FadeIn
@@ -71,6 +74,7 @@ const SingleProduct = () => {
                         name: pro.name,
                         image: pro.image,
                         price: pro.price,
+                        category:pro.category,
                         qty: 1,
                       },
                     });

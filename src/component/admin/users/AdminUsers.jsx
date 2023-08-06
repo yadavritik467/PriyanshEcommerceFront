@@ -25,7 +25,7 @@ const AdminUsers = () => {
     try {
       setLoad(true);
       const { data } = await axios.get(`${server}/allUsers`);
-      console.log(data);
+      // console.log(data);
       if (data) {
         setUsers(data.users);
       }
@@ -83,8 +83,17 @@ const AdminUsers = () => {
         placeholder="search user by email "
       />
       <div className="adminPanel">
-        <table>
-          <thead>
+        
+         
+          {load === true ? (
+            <div style={{width:"100%",position:"fixed",height:"350px", display:"flex",justifyContent:"center",alignItems:"center"}}>
+
+          <p style={{fontSize:"1.7rem",}}>Loading</p>
+            </div>
+          ) : (
+            <>
+            <table>
+             <thead>
             <tr>
               <th>ID</th>
               <th>NAME</th>
@@ -94,13 +103,6 @@ const AdminUsers = () => {
               <th>ROLE</th>
             </tr>
           </thead>
-          {load === true ? (
-            <div style={{width:"100%",position:"fixed",height:"350px", display:"flex",justifyContent:"center",alignItems:"center"}}>
-
-          <p style={{fontSize:"1.7rem",}}>Loading</p>
-            </div>
-          ) : (
-            <>
               <tbody>
                 {filteredData.map((u) => {
                   return (
@@ -120,9 +122,9 @@ const AdminUsers = () => {
                   );
                 })}
               </tbody>
+        </table>
             </>
           )}
-        </table>
       </div>
     </div>
   );

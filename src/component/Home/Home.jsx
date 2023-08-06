@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { FadeIn } from "react-slide-fade-in";
+
 import "./Home.css";
 import { Carousel } from "react-bootstrap";
 import { Link } from "react-router-dom";
@@ -92,6 +93,13 @@ const Home = () => {
           );
         })}
       </FadeIn>
+      <FadeIn
+        from="left"
+        positionOffset={80}
+        triggerOffset={100}
+        delayInMilliseconds={400}
+      >
+
       <Carousel className="carousel">
         <Carousel.Item>
           <img
@@ -118,6 +126,7 @@ const Home = () => {
           </Carousel.Caption>
         </Carousel.Item>
       </Carousel>
+      </FadeIn>
 
       <div className="productListIcon">
         <Link to={"/shoeProducts"}>👟</Link>
@@ -131,9 +140,20 @@ const Home = () => {
           />{" "}
         </Link>
       </div>
-      <div>{/* <Products /> */}</div>
+      
+        
+  
+       
     </>
   );
 };
 
 export default Home;
+
+
+
+
+
+
+
+

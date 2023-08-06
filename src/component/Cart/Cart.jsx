@@ -5,18 +5,44 @@ import { Link, useSearchParams } from "react-router-dom";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { useAuth } from "../../context/auth";
 import { toast } from "react-hot-toast";
+import { server } from "../../context/Reducer";
+import axios from "axios";
+import { Modal } from "react-bootstrap";
 const Cart = () => {
+  //
+
+  //
+
   const {
     state: { Cart },
     dispatch,
   } = CartState();
-  console.log(Cart);
+  // console.log(Cart);
   const [auth] = useAuth();
   const [amount, setAmount] = useState(0);
+  const [size, setSize] = useState("size");
+  const [image, setImage] = useState("");
+  const [paymentMethod ] = useState("COD");
+  const [orderModal, setOrderModal] = useState(false);
+
+
   let quryString = window.location.href;
-  const [searchParams,] = useSearchParams(quryString);
+  const [searchParams] = useSearchParams(quryString);
   let product_id = searchParams.get("id");
 
+
+  const handleChange = (e) => {
+    if (e.target.name === "image") {
+      const reader = new FileReader();
+
+      reader.onload = () => {
+        if (reader.readyState === 2) {
+          setImage(reader.result);
+        }
+      };
+      reader.readAsDataURL(e.target.files[0]);
+    }
+  };
 
   const changeQty = (_id, qty) => {
     dispatch({
@@ -34,20 +60,78 @@ const Cart = () => {
     );
   }, [Cart]);
 
-  const orderHandler = async() =>{
-    if(Cart.length === 0){
-      toast.error("please add somthing in your cart")
+  const orderHandler = async () => {
+    if (Cart.length === 0) {
+      toast.error("please add somthing in your cart");
+    } else if (auth.user === null) {
+      toast.error("please login to access your order");
+    } else if (size === "size") {
+      toast.error("please set your size");
+    } else {
+      setOrderModal(true)
+      
     }
-    else if(auth.user === null){
-      toast.error("please login to access your order")
-    }
-    else{
+  };
+
+  const onlineOrderhandler = async( amount) =>{
+    try {
+      let orderDetails = {};
+      orderDetails.total = amount;
+      orderDetails.paymentVerify = image;
+      orderDetails.productID = Cart;
+      orderDetails.user = auth.user;
+      orderDetails.userID = auth.user._id;
+
+      await axios.post(`${server}/newOrder`, {
+        orderDetails,
+        amount,
+      });
+
+      // console.log(orderDetails);
       dispatch({
         type: "CLEAR_ALL",
       })
-      toast.success("successfully ordered 😄 ")
+      setOrderModal(false);
+      toast.success("successfully ordered 😄 ");
+    } catch (error) {
+      console.log(error);
     }
   }
+
+  const codOrderHandler = async( amount) =>{
+    try {
+      let orderDetails = {};
+      orderDetails.total = amount;
+      orderDetails.paymentMethod = paymentMethod;
+      orderDetails.productID = Cart;
+      orderDetails.user = auth.user;
+      orderDetails.userID = auth.user._id;
+
+      await axios.post(`${server}/newOrderCod`, {
+        orderDetails,
+        amount,
+      });
+
+      // console.log(orderDetails);
+      dispatch({
+        type: "CLEAR_ALL",
+      })
+      setOrderModal(false)
+      toast.success("successfully ordered 😄 ");
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  const cartItemSize = (_id, productSize) => {
+    setSize(productSize);
+    Cart.map((c) => {
+      if (c._id === _id) {
+        c.size = productSize;
+      }
+    });
+    // console.log(Cart, "hello");
+  };
 
   return (
     <>
@@ -59,9 +143,11 @@ const Cart = () => {
           >
             Go back
           </Link>
-         {auth.user !== null &&  <Link style={{ margin: "10px", fontSize: "20px" }} to={"/myOrder"}>
-            My Order
-          </Link>}
+          {auth.user !== null && (
+            <Link style={{ margin: "10px", fontSize: "20px" }} to={"/myOrder"}>
+              My Order
+            </Link>
+          )}
         </div>
 
         {Cart.length > 0 ? (
@@ -79,23 +165,123 @@ const Cart = () => {
                   <b>Price</b> : ₹ {c.price}/-
                 </p>
 
-                <div className="qtyContainer">
-                  <button onClick={() => changeQty(c._id, c.qty - 1)}>-</button>
-                  <span>{c.qty}</span>
-                  <button onClick={() => changeQty(c._id, c.qty + 1)}>+</button>
-                  <button
-                    onClick={() =>
-                      dispatch({
-                        type: "REMOVE_CART",
-                        payload: {
-                          _id: c._id,
-                        },
-                      }) && toast.success("Remove from cart")
-                    }
-                  >
-                    <RiDeleteBin5Line />
-                  </button>
-                </div>
+                {c.category === "belt" && (
+                  <div className="qtyContainer">
+                    <button onClick={() => changeQty(c._id, c.qty - 1)}>
+                      -
+                    </button>
+                    <span>{c.qty}</span>
+                    <button onClick={() => changeQty(c._id, c.qty + 1)}>
+                      +
+                    </button>
+                    <button
+                      onClick={() =>
+                        dispatch({
+                          type: "REMOVE_CART",
+                          payload: {
+                            _id: c._id,
+                          },
+                        }) && toast.success("Remove from cart")
+                      }
+                    >
+                      <RiDeleteBin5Line />
+                    </button>
+                  </div>
+                )}
+                {c.category === "cap" && (
+                  <div className="qtyContainer">
+                    <button onClick={() => changeQty(c._id, c.qty - 1)}>
+                      -
+                    </button>
+                    <span>{c.qty}</span>
+                    <button onClick={() => changeQty(c._id, c.qty + 1)}>
+                      +
+                    </button>
+                    <button
+                      onClick={() =>
+                        dispatch({
+                          type: "REMOVE_CART",
+                          payload: {
+                            _id: c._id,
+                          },
+                        }) && toast.success("Remove from cart")
+                      }
+                    >
+                      <RiDeleteBin5Line />
+                    </button>
+                  </div>
+                )}
+                {c.category === "shoe" && (
+                  <div className="qtyContainer">
+                    <p>
+                      {" "}
+                      <select
+                        onChange={(e) => cartItemSize(c._id, e.target.value)}
+                      >
+                        <option value="size">size</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                      </select>
+                    </p>
+                    <button onClick={() => changeQty(c._id, c.qty - 1)}>
+                      -
+                    </button>
+                    <span>{c.qty}</span>
+                    <button onClick={() => changeQty(c._id, c.qty + 1)}>
+                      +
+                    </button>
+                    <button
+                      onClick={() =>
+                        dispatch({
+                          type: "REMOVE_CART",
+                          payload: {
+                            _id: c._id,
+                          },
+                        }) && toast.success("Remove from cart")
+                      }
+                    >
+                      <RiDeleteBin5Line />
+                    </button>
+                  </div>
+                )}
+                {c.category === "shirt" && (
+                  <div className="qtyContainer">
+                    <p>
+                      {" "}
+                      <select
+                        onChange={(e) => cartItemSize(c._id, e.target.value)}
+                      >
+                        <option value="size">size</option>
+                        <option value="S">S</option>
+                        <option value="M">M</option>
+                        <option value="L">L</option>
+                        <option value="XL">XL</option>
+                      </select>
+                    </p>
+                    <button onClick={() => changeQty(c._id, c.qty - 1)}>
+                      -
+                    </button>
+                    <span>{c.qty}</span>
+                    <button onClick={() => changeQty(c._id, c.qty + 1)}>
+                      +
+                    </button>
+                    <button
+                      onClick={() =>
+                        dispatch({
+                          type: "REMOVE_CART",
+                          payload: {
+                            _id: c._id,
+                          },
+                        }) && toast.success("Remove from cart")
+                      }
+                    >
+                      <RiDeleteBin5Line />
+                    </button>
+                  </div>
+                )}
               </div>
             );
           })
@@ -123,7 +309,38 @@ const Cart = () => {
           </p>
         </div>
 
-        <button onClick={orderHandler} >Order Now</button>
+        <button onClick={ orderHandler}>
+          Order Now
+        </button>
+
+        {orderModal === true && (
+          <div className="orderModal">
+            <div className="orderPayment">
+              <img src="" alt="" />
+              <small>please upload your screen shot here !!</small>
+              <input
+                style={{ textAlign: "center" }}
+                required={true}
+                type="file"
+                name="image"
+                files="image"
+                accept="image/*"
+                onChange={handleChange}
+              />
+              
+              <button onClick={() => onlineOrderhandler(amount + Cart.length * 100)}>
+                Order Now with online
+              </button>
+              <small>Or</small>
+              <button onClick={() => codOrderHandler(amount + Cart.length * 100)}>
+          Order Now with cod
+        </button>
+              <button onClick={() =>setOrderModal(false)}>
+          cancel
+        </button>
+            </div>
+          </div>
+        )}
       </div>
     </>
   );
