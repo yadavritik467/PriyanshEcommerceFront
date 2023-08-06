@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { CartState } from "../../context/contex";
 import { server } from "../../context/Reducer";
 import axios from "axios";
+import {shareButton} from "react-share"
 import { toast } from "react-hot-toast";
 import { FadeIn } from "react-slide-fade-in";
 
@@ -17,6 +18,18 @@ const Products = ({pro}) => {
   console.log(Cart)
 
   const[size,setSize]=useState("size")
+
+  const shareHandler = () =>{
+   if(navigator.share){
+    navigator.share({
+      url:window.location.href,
+    })
+    .then(()=>console.log("share success"))
+    .catch((error)=>console.log("share error",error))
+   }else{
+    console.log("not supported on this device")
+   }
+  }
 
   const deleteHandler = async(_id) =>{
      try {
@@ -69,7 +82,7 @@ const Products = ({pro}) => {
           }
         })
       }}>Add to Cart  <BsFillCartCheckFill /></button>)}
-     
+     <button onClick={shareHandler}> Share Product </button>
       {/* <ShoeProducts/>
       <CapProducts/>
       <BeltProducts/> */}
