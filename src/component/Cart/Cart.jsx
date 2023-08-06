@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./Cart.css";
 import { CartState } from "../../context/contex";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { useAuth } from "../../context/auth";
 import { toast } from "react-hot-toast";
@@ -30,6 +30,7 @@ const Cart = () => {
   const [searchParams] = useSearchParams(quryString);
   let product_id = searchParams.get("id");
 
+  const navigate = useNavigate()
 
   const handleChange = (e) => {
     if (e.target.name === "image") {
@@ -93,6 +94,7 @@ const Cart = () => {
       })
       setOrderModal(false);
       toast.success("successfully ordered 😄 ");
+      navigate("/myOrder")
     } catch (error) {
       console.log(error);
     }
@@ -118,6 +120,7 @@ const Cart = () => {
       })
       setOrderModal(false)
       toast.success("successfully ordered 😄 ");
+      navigate("/myOrder")
     } catch (error) {
       console.log(error);
     }

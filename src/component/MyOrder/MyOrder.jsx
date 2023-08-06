@@ -103,9 +103,9 @@ const MyOrder = () => {
                   {" "}
                   Request for cancle{" "}
                 </button>}
+                <hr style={{ border: "1px solid black" }} />
               </div>
             )}
-            <hr style={{ border: "1px solid black" }} />
           </div>
         );
       })}

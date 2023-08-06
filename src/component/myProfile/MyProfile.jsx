@@ -83,7 +83,7 @@ const MyProfile = () => {
     getAllUsers();
   }, []);
   return (
-    <>
+    <div style={{width:"100%",height:"80vh"}}>
       {user.map((u) => {
         if (u._id === auth.user._id) {
           return (
@@ -132,7 +132,7 @@ const MyProfile = () => {
           );
         }
       })}
-    </>
+    </div>
   );
 };
 

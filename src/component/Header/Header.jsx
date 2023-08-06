@@ -104,7 +104,7 @@ const Header = () => {
         </div>
       </div>
 
-      {auth.user === null && auth.user !== null && auth.user.role !== "admin" && modal === true && (
+      { modal === true && (
         <div className="firstContentModalParent">
           <div className="firstContentModal">
             <RxCross2 onClick={() => setModal(false)} />
@@ -126,9 +126,9 @@ const Header = () => {
         </div>
       )}
 
-     {auth.user !== null && auth.user.role === "user" &&  <Link className="whatsapp" to={"https://wa.me/7999528461"}>
+       <Link className="whatsapp" to={"https://wa.me/7999528461"}>
         <IoLogoWhatsapp />
-      </Link>}
+      </Link>
     </>
   );
 };
