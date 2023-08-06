@@ -104,7 +104,7 @@ const Header = () => {
         </div>
       </div>
 
-      {auth.user !== null && auth.user.role === "user" && modal === true && (
+      {auth.user !== null && auth.user.role !== "admin" && modal === true && (
         <div className="firstContentModalParent">
           <div className="firstContentModal">
             <RxCross2 onClick={() => setModal(false)} />
