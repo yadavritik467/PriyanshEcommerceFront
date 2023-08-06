@@ -82,7 +82,7 @@ const Products = ({pro}) => {
           }
         })
       }}>Add to Cart  <BsFillCartCheckFill /></button>)}
-     <button onClick={shareHandler}> Share Product </button>
+     {/* <button onClick={shareHandler}> Share Product </button> */}
       {/* <ShoeProducts/>
       <CapProducts/>
       <BeltProducts/> */}
