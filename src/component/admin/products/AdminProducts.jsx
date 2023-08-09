@@ -10,6 +10,7 @@ import { AiOutlineDashboard } from "react-icons/ai";
 import { LiaUserSolid } from "react-icons/lia";
 import { MdProductionQuantityLimits } from "react-icons/md";
 import { BsCardImage } from "react-icons/bs";
+import Cookies from "js-cookie";
 
 const AdminProducts = () => {
   // ----------- for Admin handler from here
@@ -68,6 +69,10 @@ const AdminProducts = () => {
         name,
         price,
         category,
+      },{
+        headers: {
+          Authorization: JSON.parse(localStorage.getItem("userID")).token,
+        },
       });
       if (data) {
         toast.success("item created ");
@@ -86,7 +91,11 @@ const AdminProducts = () => {
 
   const deleteHandler = async (_id) => {
     try {
-      const { data } = await axios.delete(`${server}/product/${_id}`);
+      const { data } = await axios.delete(`${server}/product/${_id}`,{
+        headers: {
+          Authorization: JSON.parse(localStorage.getItem("userID")).token,
+        },
+      })
       toast.success(data.message);
       getAllproducts();
     } catch (error) {
@@ -96,12 +105,17 @@ const AdminProducts = () => {
   const updateHandler = async (e) => {
     e.preventDefault();
     try {
+      
       setUpdateLoad(true);
       const { data } = await axios.put(`${server}/product/${id}`, {
         image,
         name,
         price,
         category,
+      },{
+        headers: {
+          Authorization: JSON.parse(localStorage.getItem("userID")).token,
+        },
       });
       setUpdateLoad(false);
       toast.success(data.message);

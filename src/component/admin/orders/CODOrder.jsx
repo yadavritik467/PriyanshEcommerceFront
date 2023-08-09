@@ -19,6 +19,10 @@ const CODOrder = () => {
       console.log(_id);
       const { data } = await axios.put(`${server}/Order/${id}`, {
         update,
+      },{
+        headers: {
+          Authorization: JSON.parse(localStorage.getItem("userID")).token,
+        },
       });
 
       toast.success("order status updated!!");
@@ -32,7 +36,11 @@ const CODOrder = () => {
 
   const AllOrders = async () => {
     try {
-      const { data } = await axios.get(`${server}/allOrders`);
+      const { data } = await axios.get(`${server}/allOrders`,{
+        headers: {
+          Authorization: JSON.parse(localStorage.getItem("userID")).token,
+        },
+      });
     //   console.log(data);
       setOrder(data.order);
     } catch (error) {

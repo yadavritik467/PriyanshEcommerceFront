@@ -38,7 +38,7 @@ const Header = () => {
       user: null,
       token: "",
     });
-    Cookies.remove("token");
+    localStorage.removeItem("userID");
     toast.success("Logout");
     navigate("/");
   };

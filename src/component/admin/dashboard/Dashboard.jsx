@@ -15,7 +15,11 @@ const Dashboard = () => {
   const getAllUsers = async () => {
     try {
    
-      const { data } = await axios.get(`${server}/allUsers`);
+      const { data } = await axios.get(`${server}/allUsers`,{
+        headers: {
+          Authorization: JSON.parse(localStorage.getItem("userID")).token,
+        },
+      });
   
       if (data) {
         setUsers(data.users);
@@ -51,7 +55,11 @@ const Dashboard = () => {
 
   const AllOrders = async () => {
     try {
-      const { data } = await axios.get(`${server}/allOrders`);
+      const { data } = await axios.get(`${server}/allOrders`,{
+        headers: {
+          Authorization: JSON.parse(localStorage.getItem("userID")).token,
+        },
+      });
       // console.log(data);
       setOrder(data.order);
       setTotal(data.totalRevenu);

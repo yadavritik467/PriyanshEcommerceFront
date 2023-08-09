@@ -40,7 +40,7 @@ const Login = () => {
         token:response.data.token,
       })  
         toast.success("login")
-      Cookies.set("token", JSON.stringify(response.data));
+        localStorage.setItem("userID", JSON.stringify(response.data));
 
     
       navigate(location.state || "/");

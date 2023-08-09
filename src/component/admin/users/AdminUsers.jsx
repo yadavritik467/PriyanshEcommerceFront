@@ -46,7 +46,11 @@ const AdminUsers = () => {
       if (auth.user.role === "admin") {
         toast.error(`sorry !! not authorized`);
       } else {
-        await axios.delete(`${server}/users/${_id}`);
+        await axios.delete(`${server}/users/${_id}`,{
+          headers: {
+            Authorization: JSON.parse(localStorage.getItem("userID")).token,
+          },
+        });
         toast.success("User deleted");
         getAllUsers();
       }

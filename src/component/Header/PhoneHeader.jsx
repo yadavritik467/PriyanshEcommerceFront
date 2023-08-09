@@ -44,7 +44,7 @@ const PhoneHeader = () => {
       user: null,
       token: "",
     });
-    Cookies.remove("token");
+    localStorage.removeItem("userID");
     setOpen(false);
     toast.success("Logout");
     navigate("/");

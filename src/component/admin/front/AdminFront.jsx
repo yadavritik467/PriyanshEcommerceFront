@@ -48,6 +48,10 @@ const AdminFront = () => {
       await axios.post(`${server}/update_1`, {
         image_1,
         description_1,
+      },{
+        headers: {
+          Authorization: JSON.parse(localStorage.getItem("userID")).token,
+        },
       });
       toast.success("content updated");
       getAllContent_1();
@@ -62,7 +66,11 @@ const AdminFront = () => {
 
   const getAllContent_1 = async () => {
  try {
-    const {data} = await axios.get(`${server}/getContent_1`)
+    const {data} = await axios.get(`${server}/getContent_1`,{
+      headers: {
+        Authorization: JSON.parse(localStorage.getItem("userID")).token,
+      },
+    })
     
     setContent_1(data.content)
  } catch (error) {
@@ -78,7 +86,11 @@ const AdminFront = () => {
 
   const contentDelete_1 = async (_id) => {
     try {
-        await axios.delete(`${server}/deleteContent_1/${_id}`,)
+        await axios.delete(`${server}/deleteContent_1/${_id}`,{
+          headers: {
+            Authorization: JSON.parse(localStorage.getItem("userID")).token,
+          },
+        })
         toast.success("content deleted")
         getAllContent_1();
     } catch (error) {
@@ -109,6 +121,10 @@ const AdminFront = () => {
       await axios.post(`${server}/update_2`, {
         image_2,
         description_2,
+      },{
+        headers: {
+          Authorization: JSON.parse(localStorage.getItem("userID")).token,
+        },
       });
       toast.success("content updated");
       getAllContent_2();
@@ -122,7 +138,11 @@ const AdminFront = () => {
   
   const getAllContent_2 = async () => {
     try {
-       const {data} = await axios.get(`${server}/getContent_2`)
+       const {data} = await axios.get(`${server}/getContent_2`,{
+        headers: {
+          Authorization: JSON.parse(localStorage.getItem("userID")).token,
+        },
+      })
        
        setContent_2(data.content)
     } catch (error) {
@@ -138,7 +158,11 @@ const AdminFront = () => {
    
      const contentDelete_2 = async (_id) => {
        try {
-           await axios.delete(`${server}/deleteContent_2/${_id}`,)
+           await axios.delete(`${server}/deleteContent_2/${_id}`,{
+            headers: {
+              Authorization: JSON.parse(localStorage.getItem("userID")).token,
+            },
+          })
            toast.success("content deleted")
            getAllContent_2();
        } catch (error) {
@@ -167,6 +191,10 @@ const AdminFront = () => {
       setLoad3(true);
       await axios.post(`${server}/update_3`, {
         image_3,
+      },{
+        headers: {
+          Authorization: JSON.parse(localStorage.getItem("userID")).token,
+        },
       });
       toast.success("corousel updated");
       setLoad3(false);
@@ -180,7 +208,11 @@ const AdminFront = () => {
   
   const getAllCarousel = async () => {
     try {
-       const {data} = await axios.get(`${server}/getCarousel`)
+       const {data} = await axios.get(`${server}/getCarousel{
+        headers: {
+          Authorization: JSON.parse(localStorage.getItem("userID")).token,
+        },
+      }`)
        
        setCaro(data.carousel)
     } catch (error) {
@@ -196,7 +228,11 @@ const AdminFront = () => {
    
      const caroDelete_1 = async (_id) => {
        try {
-           await axios.delete(`${server}/deleteCarousel/${_id}`,)
+           await axios.delete(`${server}/deleteCarousel/${_id}`,{
+            headers: {
+              Authorization: JSON.parse(localStorage.getItem("userID")).token,
+            },
+          })
            toast.success("caro deleted")
            getAllCarousel();
        } catch (error) {

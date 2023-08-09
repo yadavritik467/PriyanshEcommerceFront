@@ -12,7 +12,11 @@ const DeliveredOrder = () => {
 
   const AllOrders = async () => {
     try {
-      const { data } = await axios.get(`${server}/allOrders`);
+      const { data } = await axios.get(`${server}/allOrders`,{
+        headers: {
+          Authorization: JSON.parse(localStorage.getItem("userID")).token,
+        },
+      });
     //   console.log(data);
       setOrder(data.order);
     } catch (error) {

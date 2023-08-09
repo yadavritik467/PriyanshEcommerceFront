@@ -16,9 +16,13 @@ const CancleOrder = () => {
   const cancleHandler = async (_id) => {
     try {
       setId(_id);
-      console.log(_id);
+      // console.log(_id);
       const { data } = await axios.put(`${server}/Order/${id}`, {
         update,
+      },{
+        headers: {
+          Authorization: JSON.parse(localStorage.getItem("userID")).token,
+        },
       });
 
       toast.success("cancellation accepted !!");
@@ -32,7 +36,11 @@ const CancleOrder = () => {
 
   const AllOrders = async () => {
     try {
-      const { data } = await axios.get(`${server}/allOrders`);
+      const { data } = await axios.get(`${server}/allOrders`,{
+        headers: {
+          Authorization: JSON.parse(localStorage.getItem("userID")).token,
+        },
+      });
     //   console.log(data);
       setOrder(data.order);
     } catch (error) {

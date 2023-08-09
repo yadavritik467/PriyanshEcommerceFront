@@ -1,8 +1,8 @@
 
 
 // export const server = "http://localhost:5000/api/v1/"
-// export const server = "http://localhost:4500/api/v1/"
-export const server = "https://priyansh-ecommerce.vercel.app/api/v1"
+export const server = "http://localhost:4500/api/v1/"
+// export const server = "https://priyansh-ecommerce.vercel.app/api/v1"
 
 
 

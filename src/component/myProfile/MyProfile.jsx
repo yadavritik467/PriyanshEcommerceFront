@@ -33,6 +33,10 @@ const MyProfile = () => {
         setLoad(true);
         const {data} = await axios.put(`${server}/users/${id}`,{
             name,number,email,address
+        },{
+          headers: {
+            Authorization: JSON.parse(localStorage.getItem("userID")).token,
+          },
         })
         setName("");setNumber("");setEmail("");setAddress("");
         getAllUsers();
@@ -48,7 +52,11 @@ const MyProfile = () => {
   const getAllUsers = async () => {
     try {
       setLoad(true);
-      const { data } = await axios.get(`${server}/allUsers`);
+      const { data } = await axios.get(`${server}/allUsers`,{
+        headers: {
+          Authorization: JSON.parse(localStorage.getItem("userID")).token,
+        },
+      });
       //   console.log(data);
       if (data) {
         setUser(data.users);
@@ -63,7 +71,11 @@ const MyProfile = () => {
 
   const deleteMyProfile = async (_id) => {
     try {
-      await axios.delete(`${server}/users/${_id}`);
+      await axios.delete(`${server}/users/${_id}`,{
+        headers: {
+          Authorization: JSON.parse(localStorage.getItem("userID")).token,
+        },
+      });
 
       await setAuth({
         ...auth,

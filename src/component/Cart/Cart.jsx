@@ -86,6 +86,10 @@ const Cart = () => {
       await axios.post(`${server}/newOrder`, {
         orderDetails,
         amount,
+      },{
+        headers: {
+          Authorization: JSON.parse(localStorage.getItem("userID")).token,
+        },
       });
 
       // console.log(orderDetails);
@@ -112,6 +116,10 @@ const Cart = () => {
       await axios.post(`${server}/newOrderCod`, {
         orderDetails,
         amount,
+      },{
+        headers: {
+          Authorization: JSON.parse(localStorage.getItem("userID")).token,
+        },
       });
 
       // console.log(orderDetails);
