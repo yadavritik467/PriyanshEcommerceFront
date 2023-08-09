@@ -120,9 +120,7 @@ const PhoneHeader = () => {
           )}
           </div>
 
-      <Link className="whatsapp" to={"https://wa.me/7999528461"}>
-        <IoLogoWhatsapp />
-      </Link>
+      
     </>
   );
 };
