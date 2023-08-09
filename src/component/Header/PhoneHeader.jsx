@@ -79,7 +79,7 @@ const PhoneHeader = () => {
        
         <div className="">
         <Link onClick={()=>setOpen(false)} className="Link" to={"cart"}>
-            <BsFillBagCheckFill style={{fontSize: "22px" }} /> <span>({Cart.length})</span>{" "}
+            <BsFillBagCheckFill style={{fontSize: "18px" }} /> <span>({Cart.length})</span>{" "}
           </Link>
           <button onClick={openHandler} className="menuBar">{ open === false ? <RiMenu3Line/> : <RxCross2/> }    </button>
          
