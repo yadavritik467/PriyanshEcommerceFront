@@ -208,11 +208,11 @@ const AdminFront = () => {
   
   const getAllCarousel = async () => {
     try {
-       const {data} = await axios.get(`${server}/getCarousel{
+       const {data} = await axios.get(`${server}/getCarousel`,{
         headers: {
           Authorization: JSON.parse(localStorage.getItem("userID")).token,
         },
-      }`)
+      })
        
        setCaro(data.carousel)
     } catch (error) {
