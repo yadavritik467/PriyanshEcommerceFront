@@ -120,27 +120,6 @@ const PhoneHeader = () => {
         </div>
       </div>
 
-      {modal === true && (
-        <div  className="firstContentModalParent">
-          <div className={`${height === false ? "firstContentModal" : "heightHandler"}`}>
-            <RxCross2 onClick={() => setModal(false)} />
-            <div>
-              <video width={320} height={360} src={video} muted autoPlay loop />
-              <p>
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Natus
-                fuga laboriosam possimus consequatur ducimus nobis voluptates
-                facilis obcaecati maxime? Esse, a! Aperiam dignissimos saepe
-                quae? Facere tempore nam dolor libero labore maiores illum
-                doloribus tempora esse! Debitis iste iusto sequi eius esse sunt
-                tenetur, in quae ut eos modi officia exercitationem! Mollitia,
-                natus! Voluptatum veritatis illo assumenda animi nobis saepe
-                dignissimos debitis consequatur dolor esse?
-              </p>
-            </div>
-            <button onClick={()=> setHeight(!height)} className="modalButton"> { height === false ? "read more" : "read less"}</button>
-          </div>
-        </div>
-      )}
 
       <Link className="whatsapp" to={"https://wa.me/7999528461"}>
         <IoLogoWhatsapp />
