@@ -33,6 +33,7 @@ import OnlineOrder from './component/admin/orders/OnlineOrder';
 import CODOrder from './component/admin/orders/CODOrder';
 import DeliveredOrder from './component/admin/orders/DeliveredOrders';
 import CancleOrder from './component/admin/orders/CancleOrder';
+import PhoneHeader from './component/Header/PhoneHeader';
 
 function App() {
   const [auth] = useAuth()
@@ -41,6 +42,7 @@ function App() {
     <Router>
       <div className="App">
         <Header />
+        <PhoneHeader/>
         <Toaster />
         <Routes>
           <Route path='/' element={<Home />} />

@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
+import ReactPlayer from "react-player";
 import "./Header.css";
 import Cookies from "js-cookie";
 import logo from "../../WhatsApp Image 2023-07-14 at 15.30.40.jpg";
+import video from "../../video.mp4";
 import { Link, useNavigate } from "react-router-dom";
 import { BsFillBagCheckFill } from "react-icons/bs";
 import { RxCross2 } from "react-icons/rx";
@@ -20,8 +22,15 @@ const Header = () => {
   const [scrollPosition, setScrollPosition] = useState(0);
   const [isScrolled, setIsScrolled] = useState(false);
   const [modal, setModal] = useState(true);
+  const [height,setHeight] = useState(false);
 
   const navigate = useNavigate();
+  
+
+  const hieghtHandler =() =>{
+    setHeight(!height);
+  }
+  
 
   const logoutHandler = async () => {
     await setAuth({
@@ -53,7 +62,7 @@ const Header = () => {
   }, [scrollPosition]);
   return (
     <>
-      <div className={`navbar sticky-top ${isScrolled ? "navbarShadow" : ""}`}>
+      <div className={`navbar  ${isScrolled ? "navbarShadow" : ""}`}>
         <div className="nav-container-1">
           <Link className="Link" to={"/"}>
             {" "}
@@ -104,12 +113,12 @@ const Header = () => {
         </div>
       </div>
 
-      { modal === true && (
-        <div className="firstContentModalParent">
-          <div className="firstContentModal">
+      {modal === true && (
+        <div  className="firstContentModalParent">
+          <div className={`${height === false ? "firstContentModal" : "heightHandler"}`}>
             <RxCross2 onClick={() => setModal(false)} />
             <div>
-              <img src={logo} alt="" />
+              <video width={320} height={360} src={video} muted autoPlay loop />
               <p>
                 Lorem ipsum dolor, sit amet consectetur adipisicing elit. Natus
                 fuga laboriosam possimus consequatur ducimus nobis voluptates
@@ -121,12 +130,12 @@ const Header = () => {
                 dignissimos debitis consequatur dolor esse?
               </p>
             </div>
-            <button className="modalButton"> read more</button>
+            <button onClick={()=> setHeight(!height)} className="modalButton"> { height === false ? "read more" : "read less"}</button>
           </div>
         </div>
       )}
 
-       <Link className="whatsapp" to={"https://wa.me/7999528461"}>
+      <Link className="whatsapp" to={"https://wa.me/7999528461"}>
         <IoLogoWhatsapp />
       </Link>
     </>
