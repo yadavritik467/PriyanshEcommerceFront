@@ -130,7 +130,7 @@ const Header = () => {
                 dignissimos debitis consequatur dolor esse?
               </p>
             </div>
-            <button onClick={()=> setHeight(!height)} className="modalButton"> { height === false ? "read more" : "read less"}</button>
+            <button onClick={hieghtHandler} className="modalButton"> { height === false ? "read more" : "read less"}</button>
           </div>
         </div>
       )}
