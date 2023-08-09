@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { FadeIn } from "react-slide-fade-in";
-
+import {motion } from "framer-motion"
 import "./Home.css";
 import { Carousel } from "react-bootstrap";
 import { Link } from "react-router-dom";
@@ -61,72 +61,89 @@ const Home = () => {
 
   return (
     <>
-      <FadeIn
-        from="left"
-        positionOffset={80}
-        triggerOffset={100}
-        delayInMilliseconds={400}
-      >
+     
         {content_1.map((c) => {
           return (
             <div key={c._id} className="home-image">
-              <img className="shoeImg" src={c.image.url} alt="" />
-              <p>{c.description}</p>
+              <motion.img  initial={{
+            y: "-100%",
+            opacity: 0,
+          }}
+          whileInView={{
+            y: 0,
+            opacity: 1,
+          }}
+          transition={{
+            delay: 0.1,
+          }} className="shoeImg" src={c.image.url} alt="" />
+              <motion.p initial={{
+            x: "-100%",
+            opacity: 0,
+          }}
+          whileInView={{
+            x: 0,
+            opacity: 1,
+          }}
+          transition={{
+            delay: 0.1,
+          }}>{c.description}</motion.p>
             </div>
           );
         })}
-      </FadeIn>
+    
 
-      <FadeIn
-        from="right"
-        positionOffset={80}
-        triggerOffset={100}
-        delayInMilliseconds={400}
-      >
+     
         {content_2.map((c) => {
           return (
             <div key={c._id} className="home-image_1">
-              <img className="shoeImg" src={c.image.url} alt="" />
+              <motion.img initial={{
+            y: "-100%",
+            opacity: 0,
+          }}
+          whileInView={{
+            y: 0,
+            opacity: 1,
+          }}
+          transition={{
+            delay: 0.4,
+          }} className="shoeImg" src={c.image.url} alt="" />
 
-              <p>{c.description}</p>
+              <motion.p initial={{
+            x: "-100%",
+            opacity: 0,
+          }}
+          whileInView={{
+            x: 0,
+            opacity: 1,
+          }}
+          transition={{
+            delay: 0.4,
+          }}>{c.description}</motion.p>
             </div>
           );
         })}
-      </FadeIn>
-      <FadeIn
-        from="left"
-        positionOffset={80}
-        triggerOffset={100}
-        delayInMilliseconds={400}
-      >
+     
+     
 
-      <Carousel className="carousel">
+      <Carousel  className="carousel">
         <Carousel.Item>
+          {caro.map((c)=>(
+
           <img
             className="caro_img"
-            src="https://img.freepik.com/free-photo/men-shoes_1203-8387.jpg?w=1060&t=st=1689413981~exp=1689414581~hmac=73531457faf6624e5c4d67542f7d09392fc84590ebf5605314adc0e0f2efacc7"
-            alt="First slide"
+            src={c.image.url}
+            
           />
+          ))}
           <Carousel.Caption>
             <Link to={"/searchProducts"}>
               <button>Shop Now</button>
             </Link>
           </Carousel.Caption>
         </Carousel.Item>
-        <Carousel.Item>
-          <img
-            className="caro_img"
-            src="https://img.freepik.com/free-photo/men-shoes_1203-8387.jpg?w=1060&t=st=1689413981~exp=1689414581~hmac=73531457faf6624e5c4d67542f7d09392fc84590ebf5605314adc0e0f2efacc7"
-            alt="First slide"
-          />
-          <Carousel.Caption>
-            <Link to={"/products"}>
-              <button>Shop Now</button>
-            </Link>
-          </Carousel.Caption>
-        </Carousel.Item>
+       
       </Carousel>
-      </FadeIn>
+      
 
       <div className="productListIcon">
         <Link to={"/shoeProducts"}>👟</Link>

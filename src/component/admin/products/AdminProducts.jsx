@@ -163,19 +163,20 @@ const AdminProducts = () => {
         <input
           style={{ textAlign: "center" }}
           required={true}
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          type="text"
-          placeholder="Product description .."
-        />
-        <input
-          style={{ textAlign: "center" }}
-          required={true}
           value={name}
           onChange={(e) => setName(e.target.value)}
           type="text"
           placeholder="Product name .."
         />
+        <input
+          style={{ textAlign: "center" }}
+          required={true}
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          type="text"
+          placeholder="Product description .."
+        />
+        
         <input
           style={{ textAlign: "center" }}
           required={true}

@@ -18,6 +18,14 @@
 .PhoneNavbar{
     display: none;
 }
+.menuBar-Container-open{
+    display: none;
+}
+.menuBar-Container-close{
+    display: none;
+}
+
+
 
 /* for phone responsive to here  */
 .navbarShadow{
@@ -182,10 +190,12 @@ font-size: 25px;
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
+    top: 0;
     height: fit-content;
     align-items: center;
     padding: 10px;
     background-color:rgba(255, 255, 255, 0.867);
+    z-index: 10;
     border-bottom: 1px solid grey;
    }
 
@@ -201,21 +211,24 @@ font-size: 25px;
    }
    .menuBar-Container-open{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: space-between;
-    top: 60px;
-    padding: 10px 0;
     align-items: center;
+    top: 60px;
+    padding: 10px 20px;
+    gap: 10px;
     position: fixed;
-    border: 1px solid grey;
-    width: 20%;
+    border-bottom: 1px solid grey;
+    width: 100%;
     background-color: white;
-    height: 120px;
-    transform: translate(25%,9%);
+    height: fit-content;
+    transform: translateX(0%);
+    z-index: 10;
     transition: all 0.5s  ;
    }
    .menuBar-Container-close{
-    display: none;
+    display: block;
+    transform: translateX(-100%);
     
    }
     

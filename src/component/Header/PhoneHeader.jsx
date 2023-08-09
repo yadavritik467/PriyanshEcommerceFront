@@ -8,7 +8,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { BsFillBagCheckFill } from "react-icons/bs";
 import { RxCross2 } from "react-icons/rx";
 import { BiLogOut } from "react-icons/bi";
-import { AiOutlineDashboard, AiOutlineUser } from "react-icons/ai";
+import { AiOutlineDashboard, AiOutlineHome, AiOutlineUser } from "react-icons/ai";
 import { CartState } from "../../context/contex";
 import { useAuth } from "../../context/auth";
 import { toast } from "react-hot-toast";
@@ -69,7 +69,7 @@ const PhoneHeader = () => {
   }, [scrollPosition]);
   return (
     <>
-      <div className={`PhoneNavbar ${isScrolled ? "navbarShadow" : ""}`}>
+      <div className={`PhoneNavbar ${isScrolled ? "navbarShadow" : "PhoneNavbar"}`}>
         <div className="nav-container-1">
           <Link onClick={()=>setOpen(false)} className="Link" to={"/"}>
             {" "}
@@ -82,9 +82,12 @@ const PhoneHeader = () => {
             <BsFillBagCheckFill style={{fontSize: "22px" }} /> <span>({Cart.length})</span>{" "}
           </Link>
           <button onClick={openHandler} className="menuBar">{ open === false ? <RiMenu3Line/> : <RxCross2/> }    </button>
-          <div className={`${open === true ? "menuBar-Container-open" : "menuBar-Container-close" }`}>
+         
+        </div>
+      </div>
+      <div className={`${open === true ? "menuBar-Container-open" : "menuBar-Container-close" }`}>
           <Link onClick={()=>setOpen(false)} className="Link " to={"/"}>
-            Home{" "}
+            <AiOutlineHome style={{fontSize:"28px",color:"grey"}}/>
           </Link>
 
           {auth.user !== null ? (
@@ -116,10 +119,6 @@ const PhoneHeader = () => {
             </Link>
           )}
           </div>
-         
-        </div>
-      </div>
-
 
       <Link className="whatsapp" to={"https://wa.me/7999528461"}>
         <IoLogoWhatsapp />

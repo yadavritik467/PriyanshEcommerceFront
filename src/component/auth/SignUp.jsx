@@ -3,7 +3,7 @@ import "./auth.css";
 import { Link, useNavigate } from "react-router-dom";
 import { server } from "../../context/Reducer";
 import axios from "axios";
-import Loader from "../Loader/Loader";
+import {motion} from "framer-motion"
 import { toast } from "react-hot-toast";
 const SignUp = () => {
 
@@ -52,8 +52,28 @@ const SignUp = () => {
     }
   return (
     <div className="auth">
-      <form onSubmit={registerHandler}>
-        <h3>Sign Up</h3>
+      <motion.form initial={{
+            y: "-100%",
+            opacity: 0,
+          }}
+          whileInView={{
+            y: 0,
+            opacity: 1,
+          }}
+          transition={{
+            delay: 0.2,
+          }} onSubmit={registerHandler}>
+        <motion.h3 initial={{
+            x: "-100%",
+            opacity: 0,
+          }}
+          whileInView={{
+            x: 0,
+            opacity: 1,
+          }}
+          transition={{
+            delay: 0.4,
+          }}>Sign Up</motion.h3>
         <input required type="text" value={name} onChange={(e)=>setName(e.target.value)} placeholder="Enter your name" />
         <input required type="number" value={number} onChange={(e)=>setNumber(e.target.value)} placeholder="Enter your number" />
         <input required type="email" value={email} onChange={(e)=>setEmail(e.target.value)} placeholder="Enter your email" />
@@ -66,7 +86,7 @@ const SignUp = () => {
           {" "}
           Already account ? click <Link to={"/login"}> Login </Link>
         </p>
-      </form>
+      </motion.form>
     </div>
   );
 };

@@ -6,9 +6,9 @@ import { Link } from "react-router-dom";
 import { CartState } from "../../context/contex";
 import { server } from "../../context/Reducer";
 import axios from "axios";
-import {shareButton} from "react-share"
 import { toast } from "react-hot-toast";
-import { FadeIn } from "react-slide-fade-in";
+import {motion} from "framer-motion"
+
 
 const Products = ({pro}) => {
   const {
@@ -41,16 +41,21 @@ const Products = ({pro}) => {
   }
   return (
     <>
-     {/* <FadeIn
-        from="left"
-        positionOffset={0}
-        triggerOffset={0}
-        delayInMilliseconds={10}
-      > */}
+  
 
      
     <div key={pro._id} className="allProducts">
-      <Link to={`/product?id=${pro._id}`}><img src={pro.image.url} alt={pro.name} /></Link>
+      <Link to={`/product?id=${pro._id}`}><motion.img initial={{
+            y: "-100%",
+            opacity: 0,
+          }}
+          whileInView={{
+            y: 0,
+            opacity: 1,
+          }}
+          transition={{
+            delay: 0.2,
+          }} src={pro.image.url} alt={pro.name} /></Link>
       <p>
         <b>Name </b>: {pro.name}
       </p>
@@ -76,18 +81,12 @@ const Products = ({pro}) => {
             image:pro.image,
             price:pro.price,
             category:pro.category,
-            size:size,
-            setSize:setSize,
             qty:1
           }
         })
       }}>Add to Cart  <BsFillCartCheckFill /></button>)}
-     {/* <button onClick={shareHandler}> Share Product </button> */}
-      {/* <ShoeProducts/>
-      <CapProducts/>
-      <BeltProducts/> */}
     </div>
-    {/* </FadeIn> */}
+   
     </>
   );
 };
