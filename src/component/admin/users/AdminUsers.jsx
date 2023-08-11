@@ -43,9 +43,7 @@ const AdminUsers = () => {
 
   const deleteUser = async (_id) => {
     try {
-      if (auth.user.role === "admin") {
-        toast.error(`sorry !! not authorized`);
-      } else {
+      
         await axios.delete(`${server}/users/${_id}`,{
           headers: {
             Authorization: JSON.parse(localStorage.getItem("userID")).token,
@@ -53,7 +51,7 @@ const AdminUsers = () => {
         });
         toast.success("User deleted");
         getAllUsers();
-      }
+      
     } catch (error) {
       console.error(error);
       toast.error("server error please wait or refresh");
@@ -118,9 +116,9 @@ const AdminUsers = () => {
                       <td>{u.address}</td>
                       <td>{u.role}</td>
                       <td>
-                        <button onClick={() => deleteUser(u._id)}>
+                       {u.role === "user" &&  <button onClick={() => deleteUser(u._id)}>
                           delete
-                        </button>
+                        </button>}
                       </td>
                     </tr>
                   );
