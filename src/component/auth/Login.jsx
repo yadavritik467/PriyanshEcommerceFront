@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {FcGoogle} from "react-icons/fc"
-import {GoogleLogin} from "react-google-login"
+// import {GoogleLogin} from "react-google-login"
 import "./auth.css";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -56,30 +56,30 @@ const Login = () => {
   };
   
 
-  const googleSuccess = async(res) =>{
+  // const googleSuccess = async(res) =>{
   
-    const data = {
-      user: res?.profileObj ?? {},
-      token: res?.tokenId ?? ""
-    };
+  //   const data = {
+  //     user: res?.profileObj ?? {},
+  //     token: res?.tokenId ?? ""
+  //   };
 
-    setAuth({
-      ...auth,
-      user: data.user,
-      token: data.token
-    }); 
-      toast.success("login")
-      localStorage.setItem("userID", JSON.stringify(data));
+  //   setAuth({
+  //     ...auth,
+  //     user: data.user,
+  //     token: data.token
+  //   }); 
+  //     toast.success("login")
+  //     localStorage.setItem("userID", JSON.stringify(data));
 
   
-    navigate(location.state || "/");
+  //   navigate(location.state || "/");
 
-    console.log(res);
+  //   console.log(res);
     
-  }
-  const googleFailure = (error) =>{
-     console.log(error);
-  }
+  // }
+  // const googleFailure = (error) =>{
+  //    console.log(error);
+  // }
   
  
 
@@ -125,7 +125,7 @@ const Login = () => {
           placeholder="Enter your password"
         />
         <button type="submit">{ load ? "Loading" : "Login"}</button>
-        <GoogleLogin 
+        {/* <GoogleLogin 
         clientId="659252251104-ahf20a559sph3a6864c7blc3lgsj0061.apps.googleusercontent.com"
         render={(renderProps)=>(
           <button onClick={renderProps.onClick} >Login with <FcGoogle style={{fontSize:"25px"}}/></button> 
@@ -133,7 +133,7 @@ const Login = () => {
         onSuccess={googleSuccess}
         onFailure={googleFailure}
         cookiePolicy="single_host_origin"
-        />
+        /> */}
 
         
        {/* <button onClick={googleHandler} >Login with <FcGoogle style={{fontSize:"25px"}}/></button> */}
