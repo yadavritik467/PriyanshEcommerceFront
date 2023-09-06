@@ -1,5 +1,5 @@
 import React,{useEffect,useContext,useState,createContext} from "react";
-import Cookies from "js-cookie";
+
 
 const AuthContext = createContext();
 const AuthProvider = ({children}) =>{
@@ -16,7 +16,7 @@ const AuthProvider = ({children}) =>{
             setAuth({
                 ...auth,
                 user:parseData.user,
-                token:parseData.token,
+                // token:parseData.token,
             })
         }
     },[])

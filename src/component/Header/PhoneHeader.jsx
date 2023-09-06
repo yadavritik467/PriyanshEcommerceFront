@@ -90,12 +90,12 @@ const PhoneHeader = () => {
             <AiOutlineHome style={{fontSize:"28px",color:"grey"}}/>
           </Link>
 
-          {auth.user !== null ? (
+          {auth.user && auth.user !== null ? (
             <>
               {" "}
               {auth.user.role === "admin" ? (
                 <>
-                  <Link onClick={()=>setOpen(false)} to={"/admin/dashboard"}>
+                  <Link to={"/admin/dashboard"}>
                     <AiOutlineDashboard style={{ fontSize: "28px" }} />
                   </Link>
                   <Link onClick={logoutHandler}>
@@ -104,9 +104,9 @@ const PhoneHeader = () => {
                 </>
               ) : (
                 <>
-                  <Link onClick={()=>setOpen(false)} to={"/myProfile"}>
+                  {auth.user.role !== "google" && <Link to={"/myProfile"}>
                     <AiOutlineUser style={{ fontSize: "28px" }} />
-                  </Link>
+                  </Link>}
                   <Link onClick={logoutHandler}>
                     <BiLogOut style={{ fontSize: "28px" }} />
                   </Link>
@@ -114,10 +114,10 @@ const PhoneHeader = () => {
               )}
             </>
           ) : (
-            <Link onClick={()=>setOpen(false)} className="Link" to={"/login"}>
+            <Link className="Link" to={"/login"}>
               Login
             </Link>
-          )}
+          )} 
           </div>
 
       

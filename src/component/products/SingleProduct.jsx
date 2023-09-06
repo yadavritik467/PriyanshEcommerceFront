@@ -1,11 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import "./Products.css";
 import { motion } from "framer-motion";
 import { Link, useSearchParams } from "react-router-dom";
 import { CartState } from "../../context/contex";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { BsFillCartCheckFill } from "react-icons/bs";
-import { FadeIn } from "react-slide-fade-in";
 
 const SingleProduct = () => {
   const {
@@ -13,7 +12,7 @@ const SingleProduct = () => {
     dispatch,
   } = CartState();
   let quryString = window.location.href;
-  const [searchParams, setSearchParams] = useSearchParams(quryString);
+  const [searchParams] = useSearchParams(quryString);
   let product_id = searchParams.get("id");
 
   const shareHandler = () => {
@@ -117,7 +116,7 @@ const SingleProduct = () => {
             </div>
           );
         }
-      })}
+   }   )}
     </>
   );
 };

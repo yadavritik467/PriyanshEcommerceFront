@@ -37,7 +37,8 @@ import PhoneHeader from './component/Header/PhoneHeader';
 
 function App() {
   const [auth] = useAuth()
-  const [id, setId] = useState("")
+  const [id,setId] = useState("")
+
   return (
     <Router>
       <div className="App">
@@ -48,7 +49,7 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path='/signUp' element={<SignUp />} />
           <Route path='/login' element={<Login />} />
-          <Route path='/myProfile' element={ auth.user !== null ? <MyProfile /> : <Login />  } />
+            <Route path='/myProfile' element={ auth.user !== null ? <MyProfile /> : <Login />  } />
           <Route path='/cart' element={<Cart />} />
           <Route path='/myOrder' element={<MyOrder />} />
           <Route path='/forgotPassword' element={<ForgotPassword />} />
@@ -74,7 +75,7 @@ function App() {
           <Route path='/shoeProducts' element={<ShoeProducts />} />
           <Route path='/shirtProducts' element={<ShirtProducts />} />
           <Route path='/capProducts' element={<CapProducts />} />
-          <Route path='/beltProducts' element={<BeltProducts />} />
+          <Route path='/beltProducts' element={<BeltProducts />} />  
           <Route path='*' element={<NopageFound />} />
         </Routes>
         <Footer />

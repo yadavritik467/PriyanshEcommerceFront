@@ -36,7 +36,7 @@ const Context = ({ children }) => {
       const { data } = await axios.get(
         `${server}/allProducts`
       );
-    //   console.log(data);
+      console.log(data);
       setLoad(false);
       dispatch({
         type:"ADD_PRODUCT",

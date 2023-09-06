@@ -22,15 +22,13 @@ const Header = () => {
   const [scrollPosition, setScrollPosition] = useState(0);
   const [isScrolled, setIsScrolled] = useState(false);
   const [modal, setModal] = useState(true);
-  const [height,setHeight] = useState(false);
+  const [height, setHeight] = useState(false);
 
   const navigate = useNavigate();
-  
 
-  const hieghtHandler =() =>{
+  const hieghtHandler = () => {
     setHeight(!height);
-  }
-  
+  };
 
   const logoutHandler = async () => {
     await setAuth({
@@ -79,7 +77,7 @@ const Header = () => {
             Home{" "}
           </Link>
 
-          {auth.user !== null ? (
+           {auth.user && auth.user !== null ? (
             <>
               {" "}
               {auth.user.role === "admin" ? (
@@ -93,9 +91,9 @@ const Header = () => {
                 </>
               ) : (
                 <>
-                  <Link to={"/myProfile"}>
+                  {auth.user.role !== "google" && <Link to={"/myProfile"}>
                     <AiOutlineUser style={{ fontSize: "28px" }} />
-                  </Link>
+                  </Link>}
                   <Link onClick={logoutHandler}>
                     <BiLogOut style={{ fontSize: "28px" }} />
                   </Link>
@@ -106,7 +104,8 @@ const Header = () => {
             <Link className="Link" to={"/login"}>
               Login
             </Link>
-          )}
+          )} 
+         
           <Link className="Link" to={"cart"}>
             <BsFillBagCheckFill /> <span>({Cart.length})</span>{" "}
           </Link>
@@ -114,8 +113,12 @@ const Header = () => {
       </div>
 
       {modal === true && (
-        <div  className="firstContentModalParent">
-          <div className={`${height === false ? "firstContentModal" : "heightHandler"}`}>
+        <div className="firstContentModalParent">
+          <div
+            className={`${
+              height === false ? "firstContentModal" : "heightHandler"
+            }`}
+          >
             <RxCross2 onClick={() => setModal(false)} />
             <div>
               <video width={320} height={360} src={video} muted autoPlay loop />
@@ -130,7 +133,10 @@ const Header = () => {
                 dignissimos debitis consequatur dolor esse?
               </p>
             </div>
-            <button onClick={hieghtHandler} className="modalButton"> { height === false ? "read more" : "read less"}</button>
+            <button onClick={hieghtHandler} className="modalButton">
+              {" "}
+              {height === false ? "read more" : "read less"}
+            </button>
           </div>
         </div>
       )}

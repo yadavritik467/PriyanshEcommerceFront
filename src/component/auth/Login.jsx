@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import {FcGoogle} from "react-icons/fc"
-// import {GoogleLogin} from "react-google-login"
+import queryString from 'query-string';
 import "./auth.css";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate, } from "react-router-dom";
 import axios from "axios";
 import { server } from "../../context/Reducer";
 import { useAuth } from "../../context/auth";
@@ -11,15 +11,38 @@ import { toast } from "react-hot-toast";
 import {motion} from "framer-motion"
 const Login = () => {
   const navigate = useNavigate();
-  const location = useLocation();
   const [auth, setAuth] = useAuth();
   const [load, setLoad] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
 
-  const handleGoogleLogin = async() =>{
+  const location = useLocation();
+  // const history = useNavigate();
+
+ 
+  const [clicked, setClicked] = useState(false);
+
+  useEffect(() => {
+    const query = queryString.parse(location.search);
+    if (query.token ) {
+      // Store token in local storage
+      window.localStorage.setItem("jwt", query.token);
+      // Redirect to the home page
+      // history.push("/");
+    }
+
+    // Log user data
+    console.log("User data:", query);
+  }, [location.search, clicked]);
+
+  
+  
+  
+  const googleHandler = async() =>{
+    
      window.location.href = "http://localhost:4500/auth/google";
+    setClicked(true);
   }
   
 
@@ -87,7 +110,7 @@ const Login = () => {
   return (
     <div style={{display:"flex",flexDirection:"column"}} className="auth">
     
-       <motion.form initial={{
+       <motion.div className="form" initial={{
             y: "-100%",
             opacity: 0,
           }}
@@ -125,19 +148,11 @@ const Login = () => {
           placeholder="Enter your password"
         />
         <button type="submit">{ load ? "Loading" : "Login"}</button>
-        {/* <GoogleLogin 
-        clientId="659252251104-ahf20a559sph3a6864c7blc3lgsj0061.apps.googleusercontent.com"
-        render={(renderProps)=>(
-          <button onClick={renderProps.onClick} >Login with <FcGoogle style={{fontSize:"25px"}}/></button> 
-        )}
-        onSuccess={googleSuccess}
-        onFailure={googleFailure}
-        cookiePolicy="single_host_origin"
-        /> */}
+      
 
         
-       {/* <button onClick={googleHandler} >Login with <FcGoogle style={{fontSize:"25px"}}/></button> */}
-      </motion.form> <br />
+       <button onClick={googleHandler} >Login with <FcGoogle style={{fontSize:"25px"}}/></button>
+      </motion.div> <br />
       <Link to={"/forgotPassword"} > Forgot Password </Link>
         <p>
           {" "}

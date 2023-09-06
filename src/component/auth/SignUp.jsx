@@ -52,7 +52,7 @@ const SignUp = () => {
     }
   return (
     <div className="auth">
-      <motion.form initial={{
+      <motion.div className="form" initial={{
             y: "-100%",
             opacity: 0,
           }}
@@ -86,7 +86,7 @@ const SignUp = () => {
           {" "}
           Already account ? click <Link to={"/login"}> Login </Link>
         </p>
-      </motion.form>
+      </motion.div>
     </div>
   );
 };

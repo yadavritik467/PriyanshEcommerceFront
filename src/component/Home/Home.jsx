@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { FadeIn } from "react-slide-fade-in";
 import {motion } from "framer-motion"
 import "./Home.css";
 import { Carousel } from "react-bootstrap";
@@ -129,11 +128,12 @@ const Home = () => {
         <Carousel.Item>
           {caro.map((c)=>(
 
-          <img
+        <div key={c._id}>
+            <img
             className="caro_img"
             src={c.image.url}
-            
           />
+        </div>
           ))}
           <Carousel.Caption>
             <Link to={"/searchProducts"}>
