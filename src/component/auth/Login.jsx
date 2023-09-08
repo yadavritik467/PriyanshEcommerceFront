@@ -56,7 +56,7 @@ const Login = () => {
         password
       })
       setLoad(false);
-      // console.log(response);
+      console.log(response);
      
       setAuth({
         ...auth,
@@ -151,7 +151,7 @@ const Login = () => {
       
 
         
-       <button onClick={googleHandler} >Login with <FcGoogle style={{fontSize:"25px"}}/></button>
+       {/* <button onClick={googleHandler} >Login with <FcGoogle style={{fontSize:"25px"}}/></button> */}
       </motion.div> <br />
       <Link to={"/forgotPassword"} > Forgot Password </Link>
         <p>
