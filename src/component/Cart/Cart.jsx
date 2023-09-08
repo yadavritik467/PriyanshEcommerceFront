@@ -66,6 +66,7 @@ const Cart = () => {
       toast.error("please add somthing in your cart");
     } else if (auth.user === null) {
       toast.error("please login to access your order");
+      navigate("/signUp")
     } else if (size === "size") {
       toast.error("please set your size");
     } else {

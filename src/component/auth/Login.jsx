@@ -6,7 +6,7 @@ import { Link, useLocation, useNavigate, } from "react-router-dom";
 import axios from "axios";
 import { server } from "../../context/Reducer";
 import { useAuth } from "../../context/auth";
-import Loader from "../Loader/Loader";
+// import Loader from "../Loader/Loader";
 import { toast } from "react-hot-toast";
 import {motion} from "framer-motion"
 const Login = () => {
@@ -50,8 +50,7 @@ const Login = () => {
     e.preventDefault();
     try {
       setLoad(true);
-      
-      const response =  await axios.post (`${server}/login`,{
+      const response =  await axios.post(`${server}/login`,{
         email,
         password
       })
@@ -110,7 +109,7 @@ const Login = () => {
   return (
     <div style={{display:"flex",flexDirection:"column"}} className="auth">
     
-       <motion.div className="form" initial={{
+       <motion.form className="form" initial={{
             y: "-100%",
             opacity: 0,
           }}
@@ -152,7 +151,7 @@ const Login = () => {
 
         
        {/* <button onClick={googleHandler} >Login with <FcGoogle style={{fontSize:"25px"}}/></button> */}
-      </motion.div> <br />
+      </motion.form> <br />
       <Link to={"/forgotPassword"} > Forgot Password </Link>
         <p>
           {" "}
