@@ -21,7 +21,9 @@ const Header = () => {
   const [auth, setAuth] = useAuth();
   const [scrollPosition, setScrollPosition] = useState(0);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [modal, setModal] = useState(true);
+
+  const [modal, setModal] = useState(false);
+
   const [height, setHeight] = useState(false);
 
   const navigate = useNavigate();
